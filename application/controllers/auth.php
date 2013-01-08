@@ -5,34 +5,48 @@ class Auth extends CI_Controller {
     {
         parent::__construct();
          $this->load->helper('url');
-          $this->load->model("employee_model");
+         // $this->load->model("employee_model");
+          $this->load->library('authlib');
     }
  
      
 public function index()
 {
-     $this->load->view('empLogin_view');
+      redirect('/auth/login');
 } 
     
     public function login()
 {
-        $this->load->view('empLogin_view');
+          $data['errmsg'] = '';
+       $this->load->view('empLogin_view',$data);
+       
 }
  
 public function authenticate() 
 {
+         
     $username = $this->input->post('uname');
     $password = $this->input->post('pword');
     
+        
     $user = $this->authlib->login($username,$password);
     if ($user !== false) {
-        $this->load->view('homepage',array('name' => $user['name']));
+        $this->load->view('user_logged_view',array('emp_no' => $user['emp_no']));//check name variable
     }
     else {
         $data['errmsg'] = 'Unable to login - please try again';
-        $this->load->view('login_view',$data);
+        $this->load->view('empLogin_view',$data);
     }
+    
  }
+ 
+  public function home(){
+    
+        
+        $this->load->view('home_view');
+ }
+ 
+ 
  
  public function logout(){
     

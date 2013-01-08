@@ -23,7 +23,7 @@
         <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="/w1311009">Search</a></li>
-              <li><a href="index.php/auth">Login</a></li>
+              <li><a href="auth/">Login</a></li>
               <!--http://www.ecwm604.us/w1311009/
               http://www.ecwm604.us/w1311009/index.php/auth
               -->
@@ -43,7 +43,7 @@
         <p>If you don't have username and password yet please contact your manager. </p>
         <br />
 
-            <form action="" method="POST">
+            <form action="/w1311009/index.php/auth/authenticate" method="POST">
                 <div>
                     <div> Username : <br />
                      <input type="text" name='uname' length="10" size="10">  <br/> </div>               
@@ -53,8 +53,8 @@
                    
             
             <button id="reset">Reset</button>
-            <div id='result'></div></form>
-        </div></div>
+           </form>
+        </div><span style="color: red;"><?php echo $errmsg; ?></span></div>
     </div>
 </div>
 </body>

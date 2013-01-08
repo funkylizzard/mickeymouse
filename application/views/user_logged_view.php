@@ -3,10 +3,8 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>HR Application</title>
-    <link href='http://fonts.googleapis.com/css?family=Average+Sans' rel='stylesheet' type='text/css'>
-
-    <title>ECWM604 Advanced Web Technologies - Coursework 2 </title>
+    <title>HR Application </title>
+    <title>ECWM604 Advanced Web Technologies</title>
     <script language="javascript" src="/js/jquery-1.8.3.min.js"></script>
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <script language="javascript" src="/bootstrap/js/bootstrap.min.js"></script>
@@ -21,10 +19,12 @@
 <div class="navbar navbar-inverse">
     <div class="navbar-inner">
         HR Application CW2: Copyright (c) Damir Okic 2013. All Rights Reserved.
-<div class="nav-collapse collapse">
+        
+        <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="/w1311009">Search</a></li>
-              <li><a href="index.php/auth/">Login</a></li>
+              <li><a href="/w1311009/index.php/auth/">Login</a></li>
+              <li><a href="/w1311009/index.php/auth/logout">Logout</a></li>
               <!--http://www.ecwm604.us/w1311009/
               http://www.ecwm604.us/w1311009/index.php/auth
               -->
@@ -32,13 +32,14 @@
             </ul>
           </div><!--/.nav-collapse -->
 
+
     </div>
 </div>
 
 <div class="container" style="padding-bottom: 10px">
     <div class="row">
 
-        <h2>Coursework 2: HR Application</h2>
+        <h2>Welcome logged in user</h2>
         <div class="span9">
             <p>You can search for employee using fields below. </p>
 

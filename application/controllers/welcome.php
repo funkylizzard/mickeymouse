@@ -19,8 +19,24 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('home_view');
-	}
+		
+        
+        
+        $this->load->library('authlib');
+    $loggedin = $this->authlib->is_loggedin();
+ 
+    if ($loggedin === false) {
+        $this->load->helper('url');
+         //redirect('/auth/home');
+         
+         $this->load->view('home_view');
+ 
+    }
+    
+    else {
+            $this->load->view('user_logged_view',array('emp_no' => $loggedin));}
+    }
+	
 }
 
 /* End of file welcome.php */
