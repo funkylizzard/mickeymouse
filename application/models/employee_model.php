@@ -9,7 +9,74 @@ class Employee_model extends CI_Model {
 
           }
 
- 
+public function getsearch_user($name,$lastname,$department,$jobtitle)
+    
+    {
+        if ($lastname!=''){  $this->db->where('last_name',$lastname);}
+         if ($department!=''){  $this->db->where('dept_name',$department);}
+          if ($jobtitle!=''){  $this->db->where('title',$jobtitle);}
+      $this->db->where('first_name',$name);
+      $this->db->from('employees', 10, 20);
+      $this->db->join('titles', 'titles.emp_no = employees.emp_no');
+      $this->db->join('dept_emp', 'dept_emp.emp_no = employees.emp_no');
+      $this->db->join('departments', 'departments.dept_no = dept_emp.dept_no');
+      //  $this->db->select('product_title');
+       // $res = $this->db->get('employees');
+        $query = $this->db->get();
+       // $rowcount = $query->num_rows();
+        $data = $query->result_array();  
+     
+       return $data;
+         
+         
+    }
+
+public function getsearch_admin($name,$lastname,$department,$jobtitle)
+    
+    {
+        if ($lastname!=''){  $this->db->where('last_name',$lastname);}
+         if ($department!=''){  $this->db->where('dept_name',$department);}
+          if ($jobtitle!=''){  $this->db->where('title',$jobtitle);}
+      $this->db->where('first_name',$name);
+      $this->db->from('employees', 10, 20);
+      $this->db->join('titles', 'titles.emp_no = employees.emp_no');
+      $this->db->join('dept_emp', 'dept_emp.emp_no = employees.emp_no');
+      $this->db->join('departments', 'departments.dept_no = dept_emp.dept_no');
+      $this->db->join('salaries', 'salaries.emp_no = employees.emp_no');
+      //  $this->db->select('product_title');
+       // $res = $this->db->get('employees');
+        $query = $this->db->get();
+       // $rowcount = $query->num_rows();
+        $data = $query->result_array();  
+
+       return $data;
+         
+         
+    }
+
+ public function getsearch1($name,$lastname,$department,$jobtitle)
+    
+    {
+        if ($lastname!=''){  $this->db->where('last_name',$lastname);}
+         if ($department!=''){  $this->db->where('dept_name',$department);}
+          if ($jobtitle!=''){  $this->db->where('title',$jobtitle);}
+      $this->db->where('first_name',$name);
+      $this->db->from('employees', 10, 20);
+      $this->db->join('titles', 'titles.emp_no = employees.emp_no');
+      $this->db->join('dept_emp', 'dept_emp.emp_no = employees.emp_no');
+      $this->db->join('departments', 'departments.dept_no = dept_emp.dept_no');
+      //  $this->db->select('product_title');
+       // $res = $this->db->get('employees');
+        $query = $this->db->get();
+       // $rowcount = $query->num_rows();
+        $data = $query->result_array();  
+       
+       return $data;
+         
+         
+    }
+    
+    
     public function getsearch($name,$lastname,$department,$jobtitle)
     
     {
@@ -30,7 +97,7 @@ class Employee_model extends CI_Model {
         $data1['results'] = $data;
         
        
-       return $data;
+       return $data1;
          
          
     }
@@ -64,5 +131,26 @@ function is_loggedin()
         return false;
     }
 }
+
+public function is_manager(){
+    
+    $session_id = $this->session->userdata('session_id');
+   $res1 = $this->db->get_where('logins',array('session_id' => $session_id)); 
+    $row1 = $res1->row_array();
+       $empno1=  $row1['emp_no'];
+       
+    $this->db->where('emp_no',$empno1);
+     $this->db->from('dept_manager');
+      $res = $this->db->get();
+      
+      if ($res->num_rows() == 1) {
+        $row = $res->row_array();
+        return $row['emp_no'];
+    }
+    else {
+        return false;
+    }
+}
+
  
 }

@@ -73,12 +73,12 @@
 </div>
 <script language="javascript">
     $('#searchid').click(function() {
-        $.get("index.php/find/findemp",{firstname : $('#fn').val(),lastname : $('#ln').val(),dept : $('#dt').val(),jobtitle : $('#jt').val() },function(data) {
+        $.get("/w1311009/index.php/find/findemp_user",{firstname : $('#fn').val(),lastname : $('#ln').val(),dept : $('#dt').val(),jobtitle : $('#jt').val() },function(data) {
 // $('#result').html('First name: ' );
             var names = "";
             $.each(data, function(index, element) {
                 if (index > 0) {names;}
-                names += "<tr> <td>"+element.first_name +"</td> "+"<td>"+ element.last_name+ "</td> <td>"+ element.dept_name+"<td/> <td> "+ element.title+"</td><td>"+element.gender+"</td></tr>"+ "<br/>";
+                names += '<tr> <td> <a href="/w1311009/index.php/find/load_emp1?emp_no='+element.emp_no+'&fname='+element.first_name+'&lname='+element.last_name+'&dept_name='+element.dept_name+'&title='+element.title+'&birth_date='+element.birth_date+'&hire_date='+element.hire_date+'&gender='+element.gender+'">'+element.first_name +"</a> </td> "+"<td>"+ element.last_name+ "</td> <td>"+ element.dept_name+"<td/> <td> "+ element.title+"</td><td>"+element.gender+"</td></tr>"+ "<br/>";
             });
             $('#result').html(names);
         },"json");

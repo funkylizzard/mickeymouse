@@ -34,7 +34,17 @@ class Welcome extends CI_Controller {
     }
     
     else {
-            $this->load->view('user_logged_view',array('emp_no' => $loggedin));}
+        //$empno=array('emp_no' => $loggedin);
+        $ismanager = $this->authlib->is_manager();
+        if ($ismanager === false){
+            $this->load->view('user_logged_view',array('emp_no' => $loggedin));
+            }
+            
+        else  {
+            
+            $this->load->view('admin_logged_view',array('emp_no' => $loggedin));
+        }  
+            }
     }
 	
 }

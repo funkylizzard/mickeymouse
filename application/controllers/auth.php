@@ -31,7 +31,17 @@ public function authenticate()
         
     $user = $this->authlib->login($username,$password);
     if ($user !== false) {
-        $this->load->view('user_logged_view',array('emp_no' => $user['emp_no']));//check name variable
+        $ismanager = $this->authlib->is_manager();
+        if ($ismanager === false){
+          $this->load->view('user_logged_view',array('emp_no' => $user['emp_no']));
+            }
+            
+        else  {
+            
+            $this->load->view('admin_logged_view');
+        } 
+        
+       
     }
     else {
         $data['errmsg'] = 'Unable to login - please try again';

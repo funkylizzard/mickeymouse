@@ -26,5 +26,10 @@ class Authlib {
         
     }
     
+    public function is_manager(){
+        
+        return $this->ci->employee_model->is_manager();
+        
+    }
     
 }
